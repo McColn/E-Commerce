@@ -1,0 +1,78 @@
+{% extends 'app1/base.html' %}
+{% load static %}
+{% block container %}
+
+
+    <section id="page-header" style="background-image: url('{% static 'app1/b1.jpg' %}');">
+        <h2>#Stay Home</h2>
+        <p>Save more with coupons $ up to 70% off</p>
+    </section>
+
+    <section id="product1" class="section-p1">
+      <h2>Featured Products</h2>
+      <p>Summer collection new modern design</p>
+      <div class="pro-container">
+          
+        {% for x in item %}
+          <div class="pro">
+              {% if x.image %}
+              <img src="{{x.image.url}}" alt="">
+              {% else %}
+              <img src="{% static 'app1/kote.jpg' %}" alt=""></a>
+              {% endif %}
+              <div class="des">
+                  <span>adidas</span>
+                  <h5>{{x.title}}</h5>
+                  <div class="star">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                  </div>
+                  <h4>Tsh {{x.price}} <del>Tsh. {{x.discount_price}}</del></h4>
+              </div>
+              <a href="{% url 'detailed_product' x.id %}"><i class="fal fa-shopping-cart cart"></i></a>
+          </div>
+          {% endfor %}
+        
+      </div>
+    </section>
+
+    <section id="pagination" class="section-p1">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#"><i class="fal fa-long-arrow-alt-right"></i></a>
+    </section>
+
+    <section id="sm-banner" class="section-p1">
+        <div class="banner-box" style="background-image: url('{% static 'app1/smbanner2.jpg' %}');">
+            <h4>Crazy deals</h4>
+            <h2>Buy 1 get an offer free</h2>
+            <span>The best classic computers is on sale at McColn</span>
+            <button class="white">Learn More</button>
+        </div>
+        <div class="banner-box banner-box2" style="background-image: url('{% static 'app1/smbanner1.jpg' %}');">
+            <h4>Holiday seasons</h4>
+            <h2>Upcoming Season</h2>
+            <span>The best classic  is on sale at McColn</span>
+            <button class="white">Collection</button>
+        </div>
+    </section>
+
+    <section id="banner3">
+        <div class="banner-box" style="background-image: url('{% static 'app1/banner31.jpg' %}');">
+            <h2>SEASONAL SALE</h2>
+            <h3>Printer Collection -50% OFF</h3>
+        </div>
+        <div class="banner-box banner-box2" style="background-image: url('{% static 'app1/banner32.jpg' %}');">
+            <h2>SEASONAL SALE</h2>
+            <h3>Laptop Collection -50% OFF</h3>
+        </div>
+        <div class="banner-box banner-box3" style="background-image: url('{% static 'app1/banner33.jpg' %}');">
+            <h2>SEASONAL SALE</h2>
+            <h3>Radio Collection -50% OFF</h3>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+
+{% extends 'app1/base.html' %}
+{% load static %}
+
+
+{% block container %}
+
+<style>
+    /* signin */
+#signin-page {
+    margin-top: 40px;
+    justify-content: center;
+    width: 60%;
+    border: 1px solid #088178;
+    margin: 30px 20%;
+    border-radius: 20px;
+}
+.input-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.input1 {
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid #088178;
+    border-radius: 10px;
+}
+button.normal {
+    background-color: #088178;
+    color: #fff;
+}
+button.normal2{
+    background: transparent;
+    padding: 7px;
+    border: 1px solid #088178;
+    border-radius: 7px;
+}
+
+@media (max-width: 477px) {
+    #signin-page {
+    width: 80%;
+    margin: 30px 10%;
+}
+}
+</style>
+
+<section id="signin-page" class="section-p1">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h4>Signin Page - McColn</h4>
+        <div class="input-form">
+            <input type="text" class="input1" name="username" placeholder="username">
+            <input type="password" class="input1" name="password1" placeholder="Your password">
+        </div>
+        <button class="normal">Submit</button>
+    </form>
+    <p>Not registered <a href="{% url 'signup' %}"><button class="normal2">Signup</button></a></p>
+    
+</section>
+
+{% endblock %}

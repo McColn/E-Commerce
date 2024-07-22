@@ -1,0 +1,81 @@
+{% extends 'app1/base.html' %}
+{% load static %}
+{% block title %}Order Summary{% endblock %}
+
+{% block container %}
+
+<section id="page-header" class="about-header" style="background-image: url('{% static 'app1/b1.jpg' %}');">
+  <h2>#Lets talk</h2>
+  <p>Leave a message we want to hear from you</p>
+</section>
+
+{% if order.items.all %}
+<section id="cart" class="section-p1">
+  <table width="'100%">
+      <thead>
+          <tr>
+              <td>Remove</td>
+              <td>Image</td>
+              <td>Product</td>
+              <td>Price</td>
+              <td>Quantity</td>
+              <td>Subtotal</td>
+          </tr>
+      </thead>
+      <tbody>
+
+        {% for order_item in order.items.all %}
+          <tr>
+              <td><a href="{{order_item.item.get_remove_from_cart_url}}"><i class="far fa-times-circle"></i></a></td>
+              <td><img src="{{order_item.item.image.url}}" alt=""></td>
+              <td>{{order_item.item.title}}</td>
+              <td>{{order_item.item.price}}</td>
+              <td><input type="number" value="{{order_item.quantity}}"></td>
+              <td>{{order_item.get_amount_saved}}</td>
+          </tr>
+        {% endfor %}
+        
+      </tbody>
+  </table>
+</section>
+
+
+<section id="cart-add" class="section-p1">
+  <div id="coupon">
+      <h3>Apply Coupon</h3>
+      <div>
+          <input type="text" placeholder="Enter your coupon">
+          <button class="normal">Apply</button>
+      </div>
+  </div>
+
+  {% if order.get_total %}
+  <div id="subtotal">
+      <table>
+          <tr>
+              <td>Cart Summary</td>
+              <td>Tsh. {{order.get_total}}</td>
+          </tr>
+          <tr>
+              <td>Shipping</td>
+              <td>Free</td>
+          </tr>
+          <tr>
+              <td><strong>Total</strong></td>
+              <td><strong>Tsh. {{order.get_total}}</strong></td>
+          </tr>
+      </table>
+      <button class="normal">Proceed to Checkout</button>
+  </div>
+  {% endif %}
+</section>
+
+{% else %}
+<h4>No items in your cart</h4>
+<a href="{% url 'ourproduct' %}" class="">Continue Shopping</a>
+{% endif %}
+
+
+
+
+{% endblock %}
